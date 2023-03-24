@@ -7,8 +7,8 @@ services:
     image: nodered/node-red
     ports:
       - "1880:1880"
-    volumes:
-      - ./node-red-data:/data
+    # volumes:
+    #   - ./node-red-data:/data
     networks:
       - connection_network
     # platform: linux/armv7
