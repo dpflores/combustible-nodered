@@ -3,13 +3,14 @@ version: '3.7'
 
 services:
   node-red:
-    image: nodered/node-red-docker:rpi
+    image: nodered/node-red
     ports:
       - "1880:1880"
     volumes:
       - ./node-red-data:/data
     networks:
       - connection_network
+    platform: linux/armv7
 
   db:
     image: mariadb
