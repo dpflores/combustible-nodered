@@ -10,7 +10,7 @@ services:
       - ./node-red-data:/data
     networks:
       - connection_network
-    platform: linux/armv7
+    # platform: linux/armv7
 
   db:
     image: mariadb
@@ -32,18 +32,18 @@ services:
     networks:
       - connection_network
 
-  phpmyadmin:
-    image: phpmyadmin
-    restart: always
-    ports:
-      - 8080:80
-    environment:
-      PMA_HOST: db
+  # phpmyadmin:
+  #   image: phpmyadmin
+  #   restart: always
+  #   ports:
+  #     - 8080:80
+  #   environment:
+  #     PMA_HOST: db
       
-    depends_on:
-      - db
-    networks:
-      - connection_network
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - connection_network
       
 volumes:
   node-red-data:
