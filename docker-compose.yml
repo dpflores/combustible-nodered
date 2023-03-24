@@ -12,25 +12,25 @@ services:
       - connection_network
     # platform: linux/armv7
 
-  db:
-    image: lscr.io/linuxserver/mariadb
-    volumes:
-      - ./mariadb_data:/var/lib/mysql
-    restart: always
-    ports:
-      - 3306:3306
-    environment:
-      MYSQL_DATABASE: db_combustible
-      MYSQL_USER: combustible_user
-      MYSQL_PASSWORD_FILE: /run/secrets/db_password
-      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
-      SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
-    secrets:
-      - db_password
-      - db_root_password
-    networks:
-      - connection_network
+  # db:
+  #   image: lscr.io/linuxserver/mariadb
+  #   volumes:
+  #     - ./mariadb_data:/var/lib/mysql
+  #   restart: always
+  #   ports:
+  #     - 3306:3306
+  #   environment:
+  #     MYSQL_DATABASE: db_combustible
+  #     MYSQL_USER: combustible_user
+  #     MYSQL_PASSWORD_FILE: /run/secrets/db_password
+  #     MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+  #     SERVICE_TAGS: dev
+  #     SERVICE_NAME: mysql
+  #   secrets:
+  #     - db_password
+  #     - db_root_password
+  #   networks:
+  #     - connection_network
 
   # phpmyadmin:
   #   image: phpmyadmin
