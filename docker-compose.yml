@@ -1,0 +1,57 @@
+version: '3.7'
+
+
+services:
+  node-red:
+    image: nodered/node-red
+    ports:
+      - "1880:1880"
+    volumes:
+      - ./node-red-data:/data
+    networks:
+      - connection_network
+
+  db:
+    image: mariadb
+    volumes:
+      - ./mariadb_data:/var/lib/mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: db_combustible
+      MYSQL_USER: combustible_user
+      MYSQL_PASSWORD_FILE: /run/secrets/db_password
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    secrets:
+      - db_password
+      - db_root_password
+    networks:
+      - connection_network
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: db
+      
+    depends_on:
+      - db
+    networks:
+      - connection_network
+      
+volumes:
+  node-red-data:
+  
+secrets:
+  db_password:
+    file: ./secrets/db_password.txt
+  db_root_password:
+    file: ./secrets/db_root_password.txt
+
+networks:
+  connection_network:
