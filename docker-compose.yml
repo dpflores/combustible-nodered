@@ -6,7 +6,7 @@ services:
         ports:
             - "1880:1880"
         volumes:
-            - "./nodered-data:/data"
+            - "${PWD}/nodered-data:/data"
         privileged: true
         restart: "always"
 
