@@ -4,11 +4,11 @@ Este archivo crea un contenedor de nodered versión 2.2.3-12 con una base de dat
  
 Esto es para arm, v7 y funciona idealmente en el Axotec.
 
-Para que el folder de data de nodered se pueda utilizar, ejecutar en la terminal
+Para que el folder de data de nodered y de mariadbse pueda utilizar, ejecutar en la terminal
 
 ```
-sudo chown -R 1000:1000 path/to/your/node-red/data
 sudo chown -R 1000:1000 nodered-data
+sudo chown -R 1000:1000 mariadb-data
 ```
 
 luego, ejecutar levantar los servicios
