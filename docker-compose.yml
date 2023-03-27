@@ -10,6 +10,8 @@ services:
         privileged: true
         restart: "always"
 
+        networks:
+            - connect_network
 
     db:
         image: lscr.io/linuxserver/mariadb
@@ -29,7 +31,7 @@ services:
             - db_password
             - db_root_password
         networks:
-            - connection_network    
+            - connect_network    
 
 secrets:
   db_password:
@@ -38,4 +40,4 @@ secrets:
     file: ./secrets/db_root_password.txt
 
 networks:
-  connection_network:
+  connect_network:
