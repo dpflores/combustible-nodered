@@ -23,11 +23,13 @@ services:
         ports:
         - 3306:3306
         environment:
-            - MYSQL_DATABASE: db_combustible
-            - MYSQL_USER: combustible_user
-            - MYSQL_PASSWORD: /run/secrets/db_password
-            - MYSQL_ROOT_PASSWORD: /run/secrets/db_root_password
-            - FILE_PASSWORD: /run/secrets/db_root_password
+            PUID: 1000
+            PGID: 1000
+            MYSQL_DATABASE: db_combustible
+            MYSQL_USER: combustible_user
+            MYSQL_PASSWORD: /run/secrets/db_password
+            MYSQL_ROOT_PASSWORD: /run/secrets/db_root_password
+            FILE_PASSWORD: /run/secrets/db_root_password
     
         secrets:
             - db_password
