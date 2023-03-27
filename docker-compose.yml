@@ -26,7 +26,7 @@ services:
             PUID: 1000
             PGID: 1000
             MYSQL_DATABASE: db_combustible
-            TZ: PET
+            TZ: America/Lima
             # MYSQL_USER: combustible_user
             # MYSQL_PASSWORD: /run/secrets/db_password
             # MYSQL_ROOT_PASSWORD: /run/secrets/db_root_password
