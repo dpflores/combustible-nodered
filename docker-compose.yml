@@ -59,14 +59,26 @@
 #   connection_network:
 
 
-version: '2'
+# version: '3.7'
+# services:
+#     nodered:
+#         build: build
+#         image: elzekool/rpi-nodered
+#         ports:
+#             - "1880:1880"
+#         volumes:
+#             - "./data:/root/.node-red"
+#         privileged: true
+#         restart: "always"
+
+version: '3.7'
 services:
     nodered:
         build: build
-        image: elzekool/rpi-nodered
+        image: nodered/node-red:latest
         ports:
             - "1880:1880"
         volumes:
-            - "${PWD}/data:/root/.node-red"
+            - "./data:/root/.node-red"
         privileged: true
         restart: "always"
