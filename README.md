@@ -7,6 +7,10 @@ Esto es para arm, v7 y funciona idealmente en el Axotec.
 Para que el folder de data de nodered y de mariadbse pueda utilizar, ejecutar en la terminal
 
 ```
+
+mkdir nodered-data
+mkdir mariadb-data
+
 sudo chown -R 1000:1000 nodered-data
 sudo chown -R 1000:1000 mariadb-data
 ```
