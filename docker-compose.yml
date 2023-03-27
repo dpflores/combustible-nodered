@@ -10,34 +10,34 @@ services:
         privileged: true
         restart: "always"
 
-        networks:
-            - connect_network
+        # networks:
+        #     - connect_network
 
-    db:
-        image: lscr.io/linuxserver/mariadb
-        volumes:
-        - ./mariadb_data:/var/lib/mysql
-        restart: always
-        ports:
-        - 3306:3306
-        environment:
-            MYSQL_DATABASE: db_combustible
-            MYSQL_USER: combustible_user
-            MYSQL_PASSWORD_FILE: /run/secrets/db_password
-            MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
-            SERVICE_TAGS: dev
-            SERVICE_NAME: mysql
-        secrets:
-            - db_password
-            - db_root_password
-        networks:
-            - connect_network    
+#     db:
+#         image: lscr.io/linuxserver/mariadb
+#         volumes:
+#         - ./mariadb_data:/var/lib/mysql
+#         restart: always
+#         ports:
+#         - 3306:3306
+#         environment:
+#             MYSQL_DATABASE: db_combustible
+#             MYSQL_USER: combustible_user
+#             MYSQL_PASSWORD_FILE: /run/secrets/db_password
+#             MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+#             SERVICE_TAGS: dev
+#             SERVICE_NAME: mysql
+#         secrets:
+#             - db_password
+#             - db_root_password
+#         networks:
+#             - connect_network    
 
-secrets:
-  db_password:
-    file: ./secrets/db_password.txt
-  db_root_password:
-    file: ./secrets/db_root_password.txt
+# secrets:
+#   db_password:
+#     file: ./secrets/db_password.txt
+#   db_root_password:
+#     file: ./secrets/db_root_password.txt
 
-networks:
-  connect_network:
+# networks:
+#   connect_network:
