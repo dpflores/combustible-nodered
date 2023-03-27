@@ -17,6 +17,7 @@ services:
         image: lscr.io/linuxserver/mariadb
         volumes:
         - ./mariadb-data:/var/lib/mysql
+        privileged: true
         restart: always
         ports:
         - 3306:3306
