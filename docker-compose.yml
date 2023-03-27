@@ -39,5 +39,5 @@ services:
 #   db_root_password:
 #     file: ./secrets/db_root_password.txt
 
-# networks:
-#   connect_network:
+networks:
+  connect_network:
