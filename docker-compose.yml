@@ -10,8 +10,8 @@ services:
         privileged: true
         restart: "always"
 
-        # networks:
-        #     - connect_network
+        networks:
+            - connect_network
 
 #     db:
 #         image: lscr.io/linuxserver/mariadb
