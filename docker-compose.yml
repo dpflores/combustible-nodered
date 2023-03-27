@@ -1,7 +1,7 @@
 version: '3.7'
 services:
     nodered:
-        build: build
+        container_name: nodered
         image: nodered/node-red:2.2.3-12
         ports:
             - "1880:1880"
@@ -15,19 +15,20 @@ services:
 
     db:
         image: lscr.io/linuxserver/mariadb
+        container_name: mariadb
         volumes:
-        - ./mariadb-data:/var/lib/mysql
+        - ./mariadb-data:/config
         privileged: true
         restart: always
         ports:
         - 3306:3306
         environment:
-            MYSQL_DATABASE: db_combustible
-            MYSQL_USER: combustible_user
-            MYSQL_PASSWORD_FILE: /run/secrets/db_password
-            MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
-            SERVICE_TAGS: dev
-            SERVICE_NAME: mysql
+            - MYSQL_DATABASE: db_combustible
+            - MYSQL_USER: combustible_user
+            - MYSQL_PASSWORD: /run/secrets/db_password
+            - MYSQL_ROOT_PASSWORD: /run/secrets/db_root_password
+            - FILE_PASSWORD: /run/secrets/db_root_password
+    
         secrets:
             - db_password
             - db_root_password
