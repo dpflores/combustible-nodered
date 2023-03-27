@@ -1,84 +1,43 @@
-# version: '3.7'
-
-
-# services:
-#   node-red:
-#     # image: nodered/node-red-docker:rpi
-#     image: nodered/node-red
-#     ports:
-#       - "1880:1880"
-#     # volumes:
-#     #   - ./node-red-data:/data
-#     networks:
-#       - connection_network
-#     # platform: linux/armv7
-
-#   # db:
-#   #   image: lscr.io/linuxserver/mariadb
-#   #   volumes:
-#   #     - ./mariadb_data:/var/lib/mysql
-#   #   restart: always
-#   #   ports:
-#   #     - 3306:3306
-#   #   environment:
-#   #     MYSQL_DATABASE: db_combustible
-#   #     MYSQL_USER: combustible_user
-#   #     MYSQL_PASSWORD_FILE: /run/secrets/db_password
-#   #     MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
-#   #     SERVICE_TAGS: dev
-#   #     SERVICE_NAME: mysql
-#   #   secrets:
-#   #     - db_password
-#   #     - db_root_password
-#   #   networks:
-#   #     - connection_network
-
-#   # phpmyadmin:
-#   #   image: phpmyadmin
-#   #   restart: always
-#   #   ports:
-#   #     - 8080:80
-#   #   environment:
-#   #     PMA_HOST: db
-      
-#   #   depends_on:
-#   #     - db
-#   #   networks:
-#   #     - connection_network
-      
-# volumes:
-#   node-red-data:
-  
-# secrets:
-#   db_password:
-#     file: ./secrets/db_password.txt
-#   db_root_password:
-#     file: ./secrets/db_root_password.txt
-
-# networks:
-#   connection_network:
-
-
-# version: '3.7'
-# services:
-#     nodered:
-#         build: build
-#         image: elzekool/rpi-nodered
-#         ports:
-#             - "1880:1880"
-#         volumes:
-#             - "./data:/root/.node-red"
-#         privileged: true
-#         restart: "always"
-
 version: '3.7'
 services:
     nodered:
         build: build
-        image: nodered/node-red:latest
+        image: nodered/node-red:2.2.3-12
         ports:
             - "1880:1880"
         volumes:
             - "./nodered-data:/data"
         privileged: true
         restart: "always"
+
+        networks:
+            - connection_network
+
+    db:
+        image: lscr.io/linuxserver/mariadb
+        volumes:
+        - ./mariadb_data:/var/lib/mysql
+        restart: always
+        ports:
+        - 3306:3306
+        environment:
+        MYSQL_DATABASE: db_combustible
+        MYSQL_USER: combustible_user
+        MYSQL_PASSWORD_FILE: /run/secrets/db_password
+        MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+        SERVICE_TAGS: dev
+        SERVICE_NAME: mysql
+        secrets:
+        - db_password
+        - db_root_password
+        networks:
+        - connection_network
+
+secrets:
+  db_password:
+    file: ./secrets/db_password.txt
+  db_root_password:
+    file: ./secrets/db_root_password.txt
+
+networks:
+  connection_network:
