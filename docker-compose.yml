@@ -13,6 +13,8 @@ services:
         privileged: true
         restart: "always"
 
+        network_mode: "host"       # Para utilizar el can (si no lo utilizamos lo podemos quitar)
+
         networks:
             - connect_network
 
