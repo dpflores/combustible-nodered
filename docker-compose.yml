@@ -13,12 +13,10 @@ services:
         privileged: true
         restart: "always"
 
-        cap_add:
-            - SYS_RAWIO
-        devices:
-            - "/dev/:/dev/"
-        networks:
-            - connect_network
+        network_mode: "host"       # Para utilizar el can (si no lo utilizamos lo podemos)
+
+        # networks:
+        #     - connect_network
 
     db:
         image: lscr.io/linuxserver/mariadb
@@ -42,8 +40,8 @@ services:
         secrets:
             - db_password
             - db_root_password
-        networks:
-            - connect_network    
+        # networks:
+        #     - connect_network    
 
 secrets:
   db_password:
@@ -51,5 +49,5 @@ secrets:
   db_root_password:
     file: ./secrets/db_root_password.txt
 
-networks:
-  connect_network:
+# networks:
+#   connect_network:
