@@ -13,8 +13,10 @@ services:
         privileged: true
         restart: "always"
 
-        network_mode: "host"       # Para utilizar el can (si no lo utilizamos lo podemos quitar)
-
+        cap_add:
+            - SYS_RAWIO
+        devices:
+            - "/dev/:/dev/"
         networks:
             - connect_network
 
